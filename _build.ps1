@@ -1,0 +1,1 @@
+docker build -t "webperf-task-runner:0.0.1" .
