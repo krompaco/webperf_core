@@ -2,7 +2,6 @@
 .gitignore
 docs
 *.ps1
-SAMPLE-*
 README.md
 LICENSE
 Dockerfile

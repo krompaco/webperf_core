@@ -40,7 +40,7 @@ USER pptruser
 
 RUN npm install sitespeed.io@33.3.0
 RUN npm install pa11y@7.0.0
-RUN npm install lighthouse@11.6.0
+RUN npm install lighthouse@10.4.0
 RUN npm install yellowlabtools@3.0.1
 
 COPY . /usr/src/app
