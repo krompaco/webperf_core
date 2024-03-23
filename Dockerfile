@@ -6,7 +6,7 @@ ENV PATH="/usr/local/bin:${PATH}"
 
 RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends firefox tcpdump iproute2 ca-certificates sudo imagemagick libjpeg-dev xz-utils python3 python3-pip python-is-python3 ffmpeg gnupg2 wget libjpeg-dev libfontconfig build-essential gconf-service lsb-release xdg-utils fonts-liberation xvfb default-jdk --no-install-recommends --no-install-suggests --fix-missing && \
+    apt-get install -y --no-install-recommends firefox tcpdump iproute2 ca-certificates sudo imagemagick libjpeg-dev xz-utils python3 python3-pip python-is-python3 ffmpeg gnupg gnupg2 wget libjpeg-dev libfontconfig build-essential gconf-service lsb-release xdg-utils fonts-liberation xvfb default-jdk --no-install-recommends --no-install-suggests --fix-missing && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
@@ -20,8 +20,7 @@ RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >
 # Add user so we don't need --no-sandbox.
 RUN groupadd --system pptruser && \
   useradd --system --create-home --gid pptruser pptruser && \
-  mkdir --parents /usr/src/app && \
-  chown --recursive pptruser:pptruser /usr/src/app
+  mkdir --parents /usr/src/app
 
 WORKDIR /usr/src/app
 
@@ -35,13 +34,16 @@ RUN npm install -g puppeteer
 
 RUN wget -q -O vnu.jar https://github.com/validator/validator/releases/download/latest/vnu.jar
 
+COPY . /usr/src/app
+RUN chown --recursive pptruser:pptruser /usr/src/app
+
 # Run everything after as non-privileged user.
 USER pptruser
 
 RUN npm install sitespeed.io@33.3.0
 RUN npm install pa11y@7.0.0
-RUN npm install lighthouse@10.4.0
 RUN npm install yellowlabtools@3.0.1
+RUN npm install lighthouse@11.7.0
 
 COPY . /usr/src/app
 

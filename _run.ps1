@@ -1,1 +1,1 @@
-docker run -it --cap-add=SYS_ADMIN --rm webperf-task-runner:0.0.1 bash
+docker run -it --cap-add=SYS_ADMIN --cpus=".9" --shm-size=12gb --rm webperf-task-runner:0.0.1 bash
