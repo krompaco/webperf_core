@@ -151,10 +151,10 @@ def validate_on_mobile_using_validator(url, validator_config):
                 index, header['replace'].replace(' ', '%20').replace('=', '%3D'), header['replaceWith'].replace(' ', '%20').replace('=', '%3D'))
             index += 1
 
-    arg = '--shm-size=1g -b chrome --mobile true --chrome.CPUThrottlingRate 3 --connectivity.profile 3gfast --visualMetrics true --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
+    arg = '--shm-size=1g -b chrome --mobile true --chrome.CPUThrottlingRate 3 --connectivity.profile 3gfast --visualMetrics false --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
         config.sitespeed_iterations, url, browertime_plugin_options)
     if 'nt' in os.name:
-        arg = '--shm-size=1g -b chrome --mobile true --chrome.CPUThrottlingRate 3 --connectivity.profile 3gfast --visualMetrics true --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
+        arg = '--shm-size=1g -b chrome --mobile true --chrome.CPUThrottlingRate 3 --connectivity.profile 3gfast --visualMetrics false --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
             config.sitespeed_iterations, url, browertime_plugin_options)
 
     result_dict = get_result_dict(get_result(
@@ -181,10 +181,10 @@ def validate_on_desktop_using_validator(url, validator_config):
                 index, header['replace'].replace(' ', '%20').replace('=', '%3D'), header['replaceWith'].replace(' ', '%20').replace('=', '%3D'))
             index += 1
 
-    arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics true --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
+    arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics false --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
         config.sitespeed_iterations, url, browertime_plugin_options)
     if 'nt' in os.name:
-        arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics true --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
+        arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics false --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} --preScript chrome-custom.cjs {1}{2}'.format(
             config.sitespeed_iterations, url, browertime_plugin_options)
 
     result_dict = get_result_dict(get_result(
@@ -196,10 +196,10 @@ def validate_on_desktop_using_validator(url, validator_config):
 
 
 def validate_on_desktop(url):
-    arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics true --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
+    arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics false --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
         config.sitespeed_iterations, url)
     if 'nt' in os.name:
-        arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics true --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
+        arg = '--shm-size=1g -b chrome --connectivity.profile native --visualMetrics false --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
             config.sitespeed_iterations, url)
 
     result_dict = get_result_dict(get_result(
@@ -209,10 +209,10 @@ def validate_on_desktop(url):
 
 
 def validate_on_mobile(url):
-    arg = '--shm-size=1g -b chrome --mobile true --connectivity.profile 3gfast --visualMetrics true --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
+    arg = '--shm-size=1g -b chrome --mobile true --connectivity.profile 3gfast --visualMetrics false --plugins.remove screenshot --speedIndex true --xvfb --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
         config.sitespeed_iterations, url)
     if 'nt' in os.name:
-        arg = '--shm-size=1g -b chrome --mobile true --connectivity.profile 3gfast --visualMetrics true --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
+        arg = '--shm-size=1g -b chrome --mobile true --connectivity.profile 3gfast --visualMetrics false --plugins.remove screenshot --speedIndex true --browsertime.videoParams.createFilmstrip false --browsertime.chrome.args ignore-certificate-errors -n {0} {1}'.format(
             config.sitespeed_iterations, url)
 
     result_dict = get_result_dict(get_result(
