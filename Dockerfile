@@ -1,6 +1,8 @@
-FROM node:18.19.1-bookworm-slim
+FROM python:3.12.2-slim-bookworm
 
 ARG TARGETPLATFORM=linux/amd64
+
+ENV WEBPERF_RUNNER docker
 
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO false
@@ -15,7 +17,7 @@ ENV PATH="/usr/local/bin:${PATH}"
 
 RUN echo "deb http://deb.debian.org/debian/ stable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends firefox-esr tcpdump iproute2 ca-certificates sudo imagemagick libjpeg-dev xz-utils python3 python3-pip python-is-python3 ffmpeg gnupg gnupg2 wget libjpeg-dev libfontconfig build-essential gconf-service lsb-release xdg-utils fonts-liberation xvfb default-jdk --no-install-recommends --no-install-suggests --fix-missing && \
+    apt-get install -y --no-install-recommends firefox-esr tcpdump iproute2 ca-certificates sudo imagemagick libjpeg-dev xz-utils ffmpeg gnupg gnupg2 wget libjpeg-dev libfontconfig build-essential gconf-service lsb-release xdg-utils fonts-liberation xvfb default-jdk nodejs npm --no-install-recommends --no-install-suggests --fix-missing && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
@@ -42,6 +44,8 @@ RUN npm install -g puppeteer
 RUN wget -q -O vnu.jar https://github.com/validator/validator/releases/download/latest/vnu.jar
 
 COPY . /usr/src/app
+COPY Dockerfile-config.py /usr/src/app/config.py
+
 RUN chown --recursive pptruser:pptruser /usr/src/app
 
 # Run everything after as non-privileged user.
