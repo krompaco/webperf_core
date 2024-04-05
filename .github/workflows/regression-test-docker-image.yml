@@ -16,4 +16,4 @@ jobs:
     - name: Build the Docker image
       run: docker build -t "webperf-runner:0.0.2" .
     - name: Run it
-      run: docker run -it --cap-add=SYS_ADMIN --rm webperf-runner:0.0.2 python default.py -r -i sites.json     
+      run: docker run --cap-add=SYS_ADMIN --rm webperf-runner:0.0.2 python default.py -r -i sites.json     
