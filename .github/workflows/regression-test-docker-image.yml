@@ -1,6 +1,9 @@
 name: "Regression Test - Docker Image"
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '**regression-test-docker-image.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
